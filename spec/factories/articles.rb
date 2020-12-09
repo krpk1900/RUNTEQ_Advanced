@@ -28,9 +28,6 @@
 
 FactoryBot.define do
   factory :article do
-    sequence(:title){ 'test_title_1' }
-    slug 'test_slug'
-    body 'test_body'
-    state :draft
+
   end
 end
