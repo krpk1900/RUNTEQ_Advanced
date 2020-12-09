@@ -18,6 +18,11 @@
 
 FactoryBot.define do
   factory :user do
-    
+    sequence(:name){ 'test_name_1' }
+    role :writer
+
+    trait :admin do
+      role :admin
+    end
   end
 end
