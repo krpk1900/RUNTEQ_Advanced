@@ -99,5 +99,5 @@ end
 
 crumb :edit_admin_tag do |tag|
   link 'タグ編集', edit_admin_tag_path(tag)
-  parent :admin_dashboard
+  parent :admin_tags
 end
