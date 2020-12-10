@@ -19,6 +19,7 @@ RSpec.describe "AdminTagsBreadcrumbs", type: :system do
       click_link 'タグ'
       click_link '編集'
       expect(page).to have_link 'Home'
+      expect(page).to have_link 'タグ'
       expect(page).to have_selector '.current', text: 'タグ編集'
     end
   end
