@@ -36,9 +36,6 @@ class Admin::ArticlesController < ApplicationController
 
     if @article.update(article_params)
       unless @article.draft?
-
-        binding.pry
-
         if article_params[:published_at].to_time > Time.current # 未来の記事
           @article.publish_wait!
         elsif article_params[:published_at].to_time <= Time.current # 過去or現在の記事
