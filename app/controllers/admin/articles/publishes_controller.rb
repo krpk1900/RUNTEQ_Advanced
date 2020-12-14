@@ -4,7 +4,7 @@ class Admin::Articles::PublishesController < ApplicationController
   before_action :set_article
 
   def update
-    if @article.published_at.to_time > Time.current # 未来の記事
+    if @article.published_at.in_time_zone > Time.current # 未来の記事
       @article.publish_wait!
       flash[:notice] = '記事を公開待ちにしました'
       redirect_to edit_admin_article_path(@article.uuid)
