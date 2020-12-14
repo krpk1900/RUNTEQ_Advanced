@@ -13,6 +13,7 @@ ja:
     article:
       state:
         draft: '下書き'
+        publish_wait: '公開待ち'
         published: '公開'
     medium:
       media_type:

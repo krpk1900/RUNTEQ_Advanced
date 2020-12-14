@@ -28,6 +28,7 @@
 
 FactoryBot.define do
   factory :article do
-
+    sequence(:title) { 'title-1' }
+    sequence(:slug) { 'slug-1' }
   end
 end

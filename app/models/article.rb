@@ -39,7 +39,7 @@ class Article < ApplicationRecord
 
   has_one_attached :eye_catch
 
-  enum state: { draft: 0, published: 1 }
+  enum state: { draft: 0, publish_wait: 1, published: 2 }
 
   validates :slug, slug_format: true, uniqueness: true, length: { maximum: 255 }, allow_blank: true
   validates :title, presence: true, uniqueness: true, length: { maximum: 255 }
@@ -70,7 +70,7 @@ class Article < ApplicationRecord
     article_blocks.each do |article_block|
       result << if article_block.sentence?
                   sentence = article_block.blockable
-                  sentence.body || ''
+                  sentence.body ||= ''
                 elsif article_block.medium?
                   medium = ActiveDecorator::Decorator.instance.decorate(article_block.blockable)
                   controller.render_to_string("shared/_media_#{medium.media_type}", locals: { medium: medium }, layout: false)
