@@ -4,29 +4,23 @@ class Admin::Articles::PublishesController < ApplicationController
   before_action :set_article
 
   def update
-    if @article.published_at.in_time_zone > Time.current # 未来の記事
-      @article.publish_wait!
-      flash[:notice] = '記事を公開待ちにしました'
-      redirect_to edit_admin_article_path(@article.uuid)
-    else # 過去の記事
-      @article.published_at = Time.current unless @article.published_at?
-      @article.published!
+    @article.published_at = Time.current unless @article.published_at?
+    @article.adjust_state
 
-      if @article.valid?
-        Article.transaction do
-          @article.body = @article.build_body(self)
-          @article.save!
-        end
-
-        flash[:notice] = '記事を公開しました'
-
-        redirect_to edit_admin_article_path(@article.uuid)
-      else
-        flash.now[:alert] = 'エラーがあります。確認してください。'
-
-        @article.state = @article.state_was if @article.state_changed?
-        render 'admin/articles/edit'
+    if @article.valid?
+      Article.transaction do
+        @article.body = @article.build_body(self)
+        @article.save!
       end
+
+      flash[:notice] = @article.message_on_published
+
+      redirect_to edit_admin_article_path(@article.uuid)
+    else
+      flash.now[:alert] = 'エラーがあります。確認してください。'
+
+      @article.state = @article.state_was if @article.state_changed?
+      render 'admin/articles/edit'
     end
   end
 

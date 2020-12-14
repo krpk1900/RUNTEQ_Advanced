@@ -34,14 +34,9 @@ class Admin::ArticlesController < ApplicationController
   def update
     authorize(@article)
 
-    if @article.update(article_params)
-      unless @article.draft?
-        if article_params[:published_at].in_time_zone > Time.current # 未来の記事
-          @article.publish_wait!
-        elsif article_params[:published_at].in_time_zone <= Time.current # 過去or現在の記事
-          @article.published!
-        end
-      end
+    @article.assign_attributes(article_params)
+    @article.adjust_state
+    if @article.save
       flash[:notice] = '更新しました'
       redirect_to edit_admin_article_path(@article.uuid)
     else
