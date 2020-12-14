@@ -7,6 +7,6 @@ set :environment, rails_env
 # cronのログの吐き出し場所
 set :output, "#{Rails.root}/log/cron.log"
 
-every 1.hours do
-  rake 'article:publish', environment: :development
+every :hour do
+  rake 'article_state:update_article_state'
 end
