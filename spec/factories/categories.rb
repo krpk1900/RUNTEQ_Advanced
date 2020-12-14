@@ -18,6 +18,8 @@
 
 FactoryBot.define do
   factory :category do
-    
+    type { 'Category' }
+    sequence(:name, '応用課題1')
+    sequence(:slug, 'ouyou-kadai1')
   end
 end
