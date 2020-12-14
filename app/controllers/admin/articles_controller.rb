@@ -36,13 +36,10 @@ class Admin::ArticlesController < ApplicationController
 
     if @article.update(article_params)
       unless @article.draft?
-        if article_params[:published_at] > Time.current
-
-          binding.pry
-
-          @article.state = :publish_wait
-        elsif article_params[:published_at] <= Time.current
-          @article.state = :published
+        if article_params[:published_at] > Time.current # 未来の記事
+          @article.publish_wait!
+        elsif article_params[:published_at] <= Time.current # 過去or現在の記事
+          @article.published!
         end
       end
       flash[:notice] = '更新しました'
