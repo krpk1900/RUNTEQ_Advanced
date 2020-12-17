@@ -5,7 +5,7 @@ class Admin::Articles::PublishesController < ApplicationController
 
   def update
     @article.published_at = Time.current unless @article.published_at?
-    @article.adjust_state
+    @article.state = @article.publishable? ? :published : :publish_wait
 
     if @article.valid?
       Article.transaction do
