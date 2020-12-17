@@ -18,6 +18,7 @@
 
 FactoryBot.define do
   factory :author do
-    
+    sequence(:name, 'author_1')
+    sequence(:slug, 'author_slug_1')
   end
 end
