@@ -100,7 +100,7 @@ RSpec.describe "AdminArticles", type: :system do
       expect(page).to have_content future_article_with_sentence.title
       expect(page).not_to have_content future_article_with_another_sentence.title
     end
-    fit '下書き状態の記事について、本文で絞り込み検索ができること' do
+    it '下書き状態の記事について、本文で絞り込み検索ができること' do
       draft_article_with_sentence
       draft_article_with_another_sentence
       visit admin_articles_path
