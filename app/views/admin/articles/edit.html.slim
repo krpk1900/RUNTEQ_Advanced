@@ -35,6 +35,7 @@
             br
             br
           = f.input :eye_catch_width
+          = f.input :eye_catch_place, as: :radio_buttons, wrapper: :horizontal_radio_and_checkboxes
           = f.input :description, input_html: { class: 'js-autosize' }
           = f.input :author_id, as: :select2, collection: Author.pluck(:name, :id)
           = f.input :category_id, as: :select2, collection: Category.pluck(:name, :id)
