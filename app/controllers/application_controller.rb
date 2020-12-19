@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
   before_action :current_site
   before_action :init_components
 
-  rescue_from Pundit::NotAuthorizedError, with: :render_403
-
   def current_site
     @current_site ||= Site.first
   end
@@ -56,9 +54,5 @@ class ApplicationController < ActionController::Base
       new_arrivals: true,
       categories: true
     }
-  end
-
-  def render_403
-    render file: Rails.root.join('public/403.html'), status: :forbidden, layout: false, content_type: 'text/html'
   end
 end
