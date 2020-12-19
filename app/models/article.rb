@@ -40,6 +40,7 @@ class Article < ApplicationRecord
   has_one_attached :eye_catch
 
   enum state: { draft: 0, publish_wait: 1, published: 2 }
+  enum eye_catch_place: { center: 0, left: 1, right: 2 }
 
   validates :slug, slug_format: true, uniqueness: true, length: { maximum: 255 }, allow_blank: true
   validates :title, presence: true, uniqueness: true, length: { maximum: 255 }
