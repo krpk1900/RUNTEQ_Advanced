@@ -15,7 +15,7 @@ ja:
         draft: '下書き'
         publish_wait: '公開待ち'
         published: '公開'
-      eye_catch_place:
+      eyecatch_place:
         center: '中央'
         left: '左寄せ'
         right: '右寄せ'

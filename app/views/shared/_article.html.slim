@@ -7,7 +7,7 @@
 
   - if article.eye_catch.attached?
     section class=["eye_catch", "#{article.adapt_place}"]
-      = image_tag article.eye_catch_url(:lg), width: article.eye_catch_width
+      = image_tag article.eye_catch_url(:lg), width: article.eyecatch_width
 
   - if article.category.present?
     section.category
