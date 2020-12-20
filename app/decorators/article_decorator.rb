@@ -17,10 +17,4 @@ module ArticleDecorator
 
     command ? eye_catch.variant(command).processed : eye_catch
   end
-
-  def adapt_place
-    return 'text-center' if center?
-    return 'text-left' if left?
-    return 'text-right' if right?
-  end
 end
