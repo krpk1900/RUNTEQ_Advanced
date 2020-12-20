@@ -7,7 +7,7 @@ module ArticleBlockDecorator
     elsif embed?
       if blockable.youtube?
         '<i class="fa fa-youtube-play"></i>'.html_safe
-      elsif blockable.twitter?
+      else
         '<i class="fa fa-twitter"></i>'.html_safe
       end
     end
