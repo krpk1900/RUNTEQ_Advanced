@@ -18,6 +18,6 @@ class Embed < ApplicationRecord
   validates :identifier, length: { maximum: 200 }
 
   def youtube_identifier_into_embeded
-    identifier.sub('watch?v=', 'embed/')
+    identifier.sub('youtu.be', 'youtube.com/embed')
   end
 end
