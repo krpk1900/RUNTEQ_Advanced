@@ -5,7 +5,11 @@ module ArticleBlockDecorator
     elsif medium?
       '<i class="fa fa-image"></i>'.html_safe
     elsif embed?
-      '<i class="fa fa-youtube-play"></i>'.html_safe
+      if blockable.youtube?
+        '<i class="fa fa-youtube-play"></i>'.html_safe
+      else
+        '<i class="fa fa-twitter"></i>'.html_safe
+      end
     end
   end
 

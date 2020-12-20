@@ -2,19 +2,21 @@
 #
 # Table name: articles
 #
-#  id           :bigint           not null, primary key
-#  category_id  :bigint
-#  author_id    :bigint
-#  uuid         :string(255)
-#  slug         :string(255)
-#  title        :string(255)
-#  description  :text(65535)
-#  body         :text(65535)
-#  state        :integer          default("draft"), not null
-#  published_at :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  deleted_at   :datetime
+#  id             :bigint           not null, primary key
+#  category_id    :bigint
+#  author_id      :bigint
+#  uuid           :string(255)
+#  slug           :string(255)
+#  title          :string(255)
+#  description    :text(65535)
+#  body           :text(65535)
+#  state          :integer          default("draft"), not null
+#  published_at   :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  deleted_at     :datetime
+#  eyecatch_align :integer          default(0), not null
+#  eyecatch_width :integer
 #
 # Indexes
 #
@@ -40,14 +42,14 @@ class Article < ApplicationRecord
   has_one_attached :eye_catch
 
   enum state: { draft: 0, publish_wait: 1, published: 2 }
-  enum eyecatch_place: { center: 0, left: 1, right: 2 }
+  enum eyecatch_align: { center: 0, left: 1, right: 2 }
 
   validates :slug, slug_format: true, uniqueness: true, length: { maximum: 255 }, allow_blank: true
   validates :title, presence: true, uniqueness: true, length: { maximum: 255 }
   validates :description, length: { maximum: 1000 }, allow_blank: true
   validates :state, presence: true
   validates :eye_catch, attachment: { purge: true, content_type: %r{\Aimage/(png|jpeg)\Z}, maximum: 10_485_760 }
-  validates :eyecatch_width, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 700 }
+  validates :eyecatch_width, numericality: { greater_than_or_equal_to: 100, less_than_or_equal_to: 700 }, allow_blank: true
 
   with_options if: :published? do
     validates :slug, slug_format: true, presence: true, length: { maximum: 255 }

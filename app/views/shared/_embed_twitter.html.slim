@@ -1,0 +1,8 @@
+ruby:
+  embed = local_assigns[:embed]
+  width = local_assigns[:width] || 853
+  height = local_assigns[:height] || 480
+
+blockquote class='twitter-tweet'
+  = link_to nil, embed.identifier
+/embed.identifier, class: 'twitter-tweet'
