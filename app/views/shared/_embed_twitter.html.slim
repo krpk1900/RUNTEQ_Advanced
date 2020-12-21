@@ -1,8 +1,4 @@
-ruby:
-  embed = local_assigns[:embed]
-  width = local_assigns[:width] || 853
-  height = local_assigns[:height] || 480
-
-blockquote class='twitter-tweet'
-  = link_to nil, embed.identifier
-/embed.identifier, class: 'twitter-tweet'
+script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
+.embed-twitter
+  blockquote.twitter-tweet
+    a href="#{embed.identifier}"
