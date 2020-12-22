@@ -13,6 +13,8 @@
  *= require_self
  */
 
+@import 'swiper/swiper-bundle';
+
 .jumbotron {
   background: url('/images/cover.jpg') center / cover;
   color: white;
