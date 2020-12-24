@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>公開済の記事数: <%= @published_articles_num %>件</p>
+    <p>昨日公開された記事数: <%= @published_articles_num_yesterday %>件</p>
+    <% if @published_articles_yesterday.present? %>
+      <% @published_articles_yesterday.each do |article| %>
+        <p>タイトル: <%= article.title %></p>
+      <% end %>
+    <% else %>
+      <p>昨日公開された記事はありません</p>
+    <% end %>
+  </body>
+</html>
