@@ -77,4 +77,19 @@ FactoryBot.define do
       article.sentences << create(:sentence, body: evaluator.sentence_body)
     end
   end
+
+  trait :publish_wait_tomorrow do
+    state { :publish_wait }
+    published_at { Time.current.tomorrow }
+  end
+
+  trait :published_yesterday do
+    state { :published }
+    published_at { Time.current.yesterday }
+  end
+
+  trait :published_two_days_ago do
+    state { :published }
+    published_at { Time.current.ago(2.days) }
+  end
 end
