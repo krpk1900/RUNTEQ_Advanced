@@ -65,7 +65,7 @@ class Article < ApplicationRecord
 
   scope :viewable, -> { published.where('published_at < ?', Time.current) }
   scope :new_arrivals, -> { viewable.order(published_at: :desc) }
-  scope :yesterday, -> { published.where(published_at: (Time.current.yesterday.beginning_of_day)..(Time.current.yesterday.end_of_day) ) }
+  scope :yesterday, -> { published.where(published_at: (Time.current.yesterday.beginning_of_day)..(Time.current.yesterday.end_of_day)) }
   scope :by_category, ->(category_id) { where(category_id: category_id) }
   scope :by_author, ->(author_id) { where(author_id: author_id) }
   scope :by_tag, ->(tag_id) { joins(:article_tags).where(article_tags: { tag_id: tag_id }) }
